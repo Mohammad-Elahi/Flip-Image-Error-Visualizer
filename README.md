@@ -1,6 +1,5 @@
 # Visualize-rendered-image-errors-with-Flip
-
-![Flip_Result](https://github.com/Mohammad-Elahi/Visualize-rendered-image-errors-with-Flip/assets/93424032/3d240d6c-316f-4dc3-ac92-4b563dc62f08)
+![Flip_Result](https://github.com/Mohammad-Elahi/Visualize-rendered-image-errors-with-Flip/assets/93424032/b3b5bbd1-3425-4dca-a1e4-9948c395d313)
 
 # Description
 This project uses the [Flip](https://github.com/NVlabs/flip) tool from [NVlabs](https://github.com/NVlabs) to visualize rendered image errors.
@@ -79,4 +78,5 @@ python flip.py --reference "C:/Users/mohammad.elahi/flip/Test_image/0050shot.png
 # Author
 Mohammad Elahi, TU Dresden, Vodafone Chair, mohammad.elahi@mailbox.tu-dresden.de
 
-![Flip_Result2](https://github.com/Mohammad-Elahi/Visualize-rendered-image-errors-with-Flip/assets/93424032/08f12be8-f1ae-4698-98b5-7ac8e30479bf)
+![Flip_Result2](https://github.com/Mohammad-Elahi/Visualize-rendered-image-errors-with-Flip/assets/93424032/3090ae56-df57-40a9-95c1-aadba4be7b03)
+
