@@ -20,7 +20,7 @@ These instructions will guide you on how to set up and use the Flip tool.
 ### Setup
 1. **Download the repository** 
 
-2. **Create Reference and Test folders** in the Flip folder and put your images in those.
+2. In the Flip folder put your Reference and Test images in **Reference_image and Test_image folders**.
 
 3. **Open VSCode and create a new Python file**.
 
