@@ -1,127 +1,82 @@
-![Teaser image](images/teaser.png "Teaser image")
+# Visualize-rendered-image-errors-with-Flip
 
-# ꟻLIP: A Tool for Visualizing and Communicating Errors in Rendered Images (v1.4)
+![Flip_Result](https://github.com/Mohammad-Elahi/Visualize-rendered-image-errors-with-Flip/assets/93424032/3d240d6c-316f-4dc3-ac92-4b563dc62f08)
 
-By
-[Pontus Ebelin](https://research.nvidia.com/person/pontus-ebelin),
-and
-[Tomas Akenine-Möller](https://research.nvidia.com/person/tomas-akenine-m%C3%B6ller),
-with
-Jim Nilsson,
-[Magnus Oskarsson](https://www1.maths.lth.se/matematiklth/personal/magnuso/),
-[Kalle Åström](https://www.maths.lu.se/staff/kalleastrom/),
-[Mark D. Fairchild](https://www.rit.edu/directory/mdfpph-mark-fairchild),
-and
-[Peter Shirley](https://research.nvidia.com/person/peter-shirley).
+# Description
+This project uses the [Flip](https://github.com/NVlabs/flip) tool from [NVlabs](https://github.com/NVlabs) to visualize rendered image errors.
 
-This repository holds implementations of the [LDR-ꟻLIP](https://research.nvidia.com/publication/2020-07_FLIP)
-and [HDR-ꟻLIP](https://research.nvidia.com/publication/2021-05_HDR-FLIP) image error metrics.
-It also holds code for the ꟻLIP tool, presented in [Ray Tracing Gems II](https://www.realtimerendering.com/raytracinggems/rtg2/index.html).
+## license
+This project uses the [Flip](https://github.com/NVlabs/flip) tool by [NVlabs](https://github.com/NVlabs), which is licensed under the BSD 3-Clause License. Please see the [original repository](https://github.com/NVlabs/flip) for more details.
 
-The changes made for the different versions of ꟻLIP are summarized in the [version list](misc/versionList.md).
+## Getting Started
 
-[A list of papers](misc/papersUsingFLIP.md) that use/cite ꟻLIP.
+These instructions will guide you on how to set up and use the Flip tool.
 
-[A note](misc/precision.md) about the precision of ꟻLIP.
+### Prerequisites
 
-[An image gallery](https://research.nvidia.com/node/3525) displaying a large quantity of reference/test images and corresponding error maps from
-different metrics.
+- Python 3.12.2
+- OpenCV
+- Conda
 
-**Note**: in v1.3, we switched to a *single header* ([FLIP.h](https://github.com/NVlabs/flip/blob/singleheader_WIP/cpp/FLIP.h)) for C++/CUDA for easier integration.
+### Setup
+1. **Download the Flip repository** from [here](https://github.com/NVlabs/flip).
 
-# License
+2. **Create Reference and Test folders** in the Flip folder and put your images in those.
 
-Copyright © 2020-2024, NVIDIA Corporation & Affiliates. All rights reserved.
+3. **Open VSCode and create a new Python file**.
 
-This work is made available under a [BSD 3-Clause License](misc/LICENSE.md).
-
-The repository distributes code for `tinyexr`, which is subject to a [BSD 3-Clause License](misc/LICENSE-third-party.md#bsd-3-clause-license),<br>
-and `stb_image`, which is subject to an [MIT License](misc/LICENSE-third-party.md#mit-license).
-
-For individual contributions to the project, please confer the [Individual Contributor License Agreement](misc/CLA.md).
-
-For business inquiries, please visit our website and submit the form: [NVIDIA Research Licensing](https://www.nvidia.com/en-us/research/inquiries/).
-
-# Python (API and Tool)
-**Setup** (with pip):
+4. **Clone the Flip repository**:
+    - Open a terminal in VSCode (Ctrl+` ).
+    - Clone the Flip repository from GitHub to your local machine using the command: 
 ```
-cd python
-pip install -r requirements.txt .
+git clone https://github.com/NVlabs/flip.git
 ```
-
-**Usage:**<br>
-
-API:<br>
-See the example script `python/api_example.py`. Note that the script requires `matplotlib`.
-
-Tool:
+Navigate to the Python directory in the cloned repository: 
 ```
-python flip.py --reference reference.{exr|png} --test test.{exr|png} [--options]
+cd flip/python
 ```
+3. **Setup Python Interpreter**:
+    - Press Ctrl+Shift+P to open the Command Palette.
+    - Type "Python: Select Interpreter" and select Python 3.12.2('flip') Conda.
 
-See the [README](python/README.md) in the `python` folder and run `python flip.py -h` for further information and usage instructions.
-
-# C++ and CUDA (API and Tool)
-**Setup:**
-
-The `FLIP.sln` solution contains one CUDA backend project and one pure C++ backend project.
-
-Compiling the CUDA project requires a CUDA compatible GPU. Instruction on how to install CUDA can be found [here](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html).
-
-Alternatively, a CMake build can be done by creating a build directory and invoking CMake on the source dir (add `--config Release` to build release configuration on Windows):
-
+4. **Install OpenCV**:
+    - In the same terminal, type the following command and press Enter to install OpenCV: 
 ```
-mkdir build
-cd build
-cmake ..
-cmake --build . [--config Release]
+conda install -c conda-forge opencv
 ```
-
-CUDA support is enabled via the `FLIP_ENABLE_CUDA`, which can be passed to CMake on the command line with
-`-DFLIP_ENABLE_CUDA=ON` or set interactively with `ccmake` or `cmake-gui`.
-`FLIP_LIBRARY` option allows to output a library rather than an executable.
-
-**Usage:**<br>
-
-API:<br>
-See the [README](cpp/README.md).
-
-Tool:
+Check if OpenCV is successfully installed by typing the following commands in the terminal and pressing Enter:
 ```
-flip[-cuda].exe --reference reference.{exr|png} --test test.{exr|png} [options]
+python
+import cv2 as cv
 ```
+If OpenCV is installed correctly, these commands should not return any errors.
 
-See the [README](cpp/README.md) in the `cpp` folder and run `flip[-cuda].exe -h` for further information and usage instructions.
-
-# PyTorch (Loss Function)
-**Setup** (with Anaconda3):
+5. **Navigate to the Flip directory**:
+    - Navigate to the python directory in the Flip repository (the directory where you cloned the Flip repository) by typing the following command in the terminal and pressing Enter: 
 ```
-conda create -n flip_dl python numpy matplotlib
-conda activate flip_dl
-conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch -c conda-forge
-conda install -c conda-forge openexr-python
+cd path_to_flip_directory\flip\python
 ```
+Replace `path_to_flip_directory` with the actual path to the Flip directory.
 
-**Usage:**
+6. **Activate the Flip environment** before using the tool: 
+```
+conda activate flip
+```
+7. **Use the Tool**:
+You can use the Flip tool with the following command: 
+```python
+python flip.py --reference “your_Reference_folder_path”  --test “your_Test_folder_path”
+```
+Replace `your_Reference_image_folder_path` and `your_Test_image_folder_path` with the paths to your reference and test images folder, respectively.
 
-*Remember to activate the* `flip_dl` *environment through* `conda activate flip_dl` *before using the loss function.*
+**Note**: You should path to your directory with "/" like:
+```
+python flip.py --reference "C:/Users/mohammad.elahi/flip/Test_image/0050shot.png" --test "C:/Users/mohammad.elahi/flip/Reference_image/0033shot.png"
+```
+**Note**: The image result of the error map will be saved to the Flip folder path: flip\python
 
-LDR- and HDR-ꟻLIP are implemented as loss modules in `flip_loss.py`. An example where the loss function is used to train a simple autoencoder is provided in `train.py`.
 
-See the [README](pytorch/README.md) in the `pytorch` folder for further information and usage instructions.
+# Author
+Mohammad Elahi, TU Dresden, Vodafone Chair, mohammad.elahi@mailbox.tu-dresden.de
 
-# Citation
-If your work uses the ꟻLIP tool to find the errors between *low dynamic range* images,
-please cite the LDR-ꟻLIP paper:<br>
-[Paper](https://research.nvidia.com/publication/2020-07_FLIP) | [BibTeX](misc/LDRFLIP.txt)
-
-If it uses the ꟻLIP tool to find the errors between *high dynamic range* images,
-instead cite the HDR-ꟻLIP paper:<br>
-[Paper](https://research.nvidia.com/publication/2021-05_HDR-FLIP) | [BibTeX](misc/HDRFLIP.txt)
-
-Should your work use the ꟻLIP tool in a more general fashion, please cite the Ray Tracing Gems II article:<br>
-[Chapter](https://link.springer.com/chapter/10.1007%2F978-1-4842-7185-8_19) | [BibTeX](misc/FLIP.txt)
-
-# Acknowledgements
-We appreciate the following peoples' contributions to this repository:
-Jonathan Granskog, Jacob Munkberg, Jon Hasselgren, Jefferson Amstutz, Alan Wolfe, Killian Herveau, Vinh Truong, Philippe Dagobert, Hannes Hergeth, Matt Pharr, Tizian Zeltner, Latios96, and Chris Zhang.
+![Flip_Result2](https://github.com/Mohammad-Elahi/Visualize-rendered-image-errors-with-Flip/assets/93424032/08f12be8-f1ae-4698-98b5-7ac8e30479bf)
