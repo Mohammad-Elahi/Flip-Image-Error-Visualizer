@@ -18,7 +18,7 @@ These instructions will guide you on how to set up and use the Flip tool.
 - Conda
 
 ### Setup
-1. **Download the Flip repository** from [here](https://github.com/NVlabs/flip).
+1. **Download the repository** 
 
 2. **Create Reference and Test folders** in the Flip folder and put your images in those.
 
