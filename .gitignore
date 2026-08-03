@@ -47,3 +47,6 @@ python/*.egg-info/
 
 # Ignore build
 build/
+
+# Ignore Flip tool output images
+flip.*.png
